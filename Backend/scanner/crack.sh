@@ -5,8 +5,8 @@ BASE_DIR="/root/Cutie-Pie"
 LOGS_DIR="$BASE_DIR/logs/scanner"
 SSH_FILE="$LOGS_DIR/classified/ssh.txt"
 CRACKED_FILE="$LOGS_DIR/cracked/cracked.csv"
-USER_LIST="$BASE_DIR/config/users.txt"
-PASS_LIST="$BASE_DIR/config/pass.txt"
+USER_LIST="$BASE_DIR/config/users.conf"
+PASS_LIST="$BASE_DIR/config/pass.conf"
 PROCESSED_IPS="$LOGS_DIR/processed_ips.txt"
 
 # Ensure the cracked.csv file exists with headers
