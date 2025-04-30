@@ -1,7 +1,7 @@
 #!/bin/bash
 # Enrichment Module for IPs from Masscan - One-by-One Processing with Detailed Progress
 
-BASE_DIR="$HOME/Cutie-Pie"
+BASE_DIR="$HOME/cutie-pie/Backend"
 LOG_DIR="$BASE_DIR/logs/scanner"
 ALL_FILE="$LOG_DIR/all.txt"
 ENRICHED_DIR="$LOG_DIR/enriched"

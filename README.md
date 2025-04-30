@@ -1,22 +1,32 @@
 # Cutie-Pie Scanner
 
-**Cutie-Pie**, is a live internet scanning tool built around `masscan` to dynamically scan ports and classify open services. This script monitors a configuration file for changes, adjusts scan targets on the fly, and logs results to categorized files.
+**Cutie-Pie**, is a live internet scanning tool to dynamically scan exposed devices and classify them.
 
 ## Features
 
-- **Dynamic Port Scanning**: Scans ports defined in a config file, updating in real-time when changes are detected.
-- **Service Classification**: Automatically creates and manages output files based on port-service mappings (e.g., `http.txt`, `ftp.txt`).
-- **Change Detection**: Monitors `ports.conf` for modifications and restarts scans seamlessly.
+- **Dynamic Port Scanning**: Scans for exposed devices with ports defined in a config file, updating in real-time when changes are detected [configurable via frontend].
+- **Service Classification**: Automatically creates and manages output files based on port-service mappings (e.g., `http.txt`, `ftp.txt`) and shows the classified output in frontend.
+- **Automated Cracking**: Cracks services like ssh, ftp automatically (customizable).
+- **Detailed scan for devices**: scans IPs  for detailed and enriched outputs.
 - **File Management**: Clears log files when they exceed 500 lines to prevent overflow.
-- **Clean Output**: Color-coded console output with separators for better readability (`[INFO]`, `[DEBUG]`, `[CHANGE]` in blue, yellow, green respectively).
 
 ## Prerequisites
 
-- **Operating System**: Tested on Kali Linux (root access recommended).
+- **Operating System**: Tested on Kali Linux (root access needed).
 - **Dependencies**:
   - `masscan` (install with `sudo apt install masscan`).
+  - `geoiplookup`
+  - `dig`
+  - `whois`
+  - `curl`
+  - `nc`
+  - `THC-Hydra`
   - `bash` (pre-installed on most Linux distributions).
   - `coreutils` (for `stat`, `grep`, etc.).
+
+  - install all at once: `sudo apt install masscan geoip-bin dnsutils whois curl hydra util-linux coreutils`
+
+
 - **Permissions**: Run as root (`sudo`) for full network scanning capabilities.
 
 ## Installation
@@ -44,9 +54,9 @@
 ## Configuration
 
 - **Directory Structure**:
-  - `/root/Cutie-Pie/`: Base directory (adjust `KALI_SCANNER` in the script if needed).
-  - `/root/Cutie-Pie/config/`: Contains `ports.conf` and `masscan_exclude.conf`.
-  - `/root/Cutie-Pie/logs/scanner/`: Stores output files (e.g., `classified/http.txt`).
+  - `/root/cutie-pie/Backend`: Base directory (adjust `KALI_SCANNER` in the script if needed).
+  - `/root/cutie-pie/Backend/config/`: Contains `ports.conf` and `masscan_exclude.conf`.
+  - `/root/cutie-pie/Backend/logs/scanner/`: Stores output files (e.g., `classified/http.txt`).
 - **ports.conf**: Define ports and services to scan. Format: `port # service_name` (e.g., `80 # http` or `8080 # http-extra`). Comments start with `#`.
 - **masscan_exclude.conf**: Optional file to exclude IP ranges (format per `masscan` docs).
 
@@ -69,7 +79,7 @@
 
 2. Modify `ports.conf` to add/remove ports (e.g., add `443 # https`).
 
-3. Watch the console for real-time updates and check output files in `/root/Cutie-Pie/logs/scanner/classified/`.
+3. Watch the console for real-time updates and check output files in `/root/cutie-pie/Backendlogs/scanner/classified/`.
 
 ### Output Files
 
@@ -92,7 +102,7 @@
 Timestamp: 1745936391 Host: 54.188.126.198 () Ports: 80/open/tcp//http//
 [DEBUG] Processing IP: ip=54.188.126.198, port=80, timestamp=2025-04-29T14:19:52Z
 ====================================
-[CHANGE] Change detected in /root/Cutie-Pie/config/ports.conf at Tue Apr 29 10:19:48 AM EDT 2025 - Waiting to process...
+[CHANGE] Change detected in /root/cutie-pie/Backend/config/ports.conf at Tue Apr 29 10:19:48 AM EDT 2025 - Waiting to process...
 ====================================
 [INFO] Scan completed at Tue Apr 29 10:19:51 AM EDT 2025 - Restarting...
 ```

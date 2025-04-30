@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Paths
-BASE_DIR="/root/Cutie-Pie"
+BASE_DIR="$HOME/cutie-pie/Backend"
 LOGS_DIR="$BASE_DIR/logs/scanner"
 SSH_FILE="$LOGS_DIR/classified/ssh.txt"
 CRACKED_FILE="$LOGS_DIR/cracked/cracked.csv"
