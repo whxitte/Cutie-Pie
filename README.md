@@ -53,6 +53,9 @@
 
 ## Configuration
 
+- **Set Live Environment**:
+  - `export KALI_SCANNER=/root/cutie-pie/Backend`
+
 - **Directory Structure**:
   - `/root/cutie-pie/Backend`: Base directory (adjust `KALI_SCANNER` in the script if needed).
   - `/root/cutie-pie/Backend/config/`: Contains `ports.conf` and `masscan_exclude.conf`.
